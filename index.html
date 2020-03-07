@@ -38,5 +38,16 @@
     //Object of Child Class
     let s = new Samsung();
     console.log(s);
+
+    //Defining property on prototype of super class
+    Mobile.prototype.z = 30;
+
+    //Prototypal Inheritance
+    Samsung.prototype = Object.create(Mobile.prototype);
+    Samsung.prototype.constructor = Samsung;
+
+    //Prototypal Inheritance in action
+    let samsung = new Samsung();
+    document.write(samsung.a + " | " + samsung.b + " | " + samsung.z);
   </script>
 </html>
