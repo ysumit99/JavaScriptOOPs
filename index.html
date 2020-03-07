@@ -42,7 +42,7 @@
       }
     };
 
-    /* normal function to create object using empty function */
+    /* normal function to create object using empty object */
     function createNewPerson(name) {
       const obj = {};
       obj.name = name;
@@ -57,5 +57,21 @@
     const salva = createNewPerson("Salva");
     console.log(salva.name);
     console.log(salva.greeting());
+
+    /* Using constructor function to create new objects */
+    /* Notice 
+    1. Person function doesn't return anything unlike the above createNewPerson object. 
+    2. The name of a constructor function starts with a capital letter
+    */
+    function Person(name) {
+      this.name = name;
+      this.greeting = function() {
+        alert("Hi! I'm " + this.name + ".");
+      };
+    }
+
+    /* creating objects using constructor function */
+    let person1 = new Person("Mayank");
+    let person2 = new Person("Sumit");
   </script>
 </html>
