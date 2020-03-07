@@ -42,7 +42,7 @@
       }
     };
 
-    /* function */
+    /* normal function to create object using empty function */
     function createNewPerson(name) {
       const obj = {};
       obj.name = name;
@@ -52,5 +52,10 @@
 
       return obj;
     }
+
+    /* creating new person by calling the function */
+    const salva = createNewPerson("Salva");
+    console.log(salva.name);
+    console.log(salva.greeting());
   </script>
 </html>
