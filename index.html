@@ -18,80 +18,25 @@
   </body>
 
   <script>
-    const person = {
-      name: ["Bob", "Smith"],
-      age: 32,
-      gender: "male",
-      interests: ["music", "skiing"],
-      bio: function() {
-        alert(
-          this.name[0] +
-            " " +
-            this.name[1] +
-            " is " +
-            this.age +
-            " years old. He likes " +
-            this.interests[0] +
-            " and " +
-            this.interests[1] +
-            "."
-        );
-      },
-      greeting: function() {
-        alert("Hi! I'm " + this.name[0] + ".");
-      }
-    };
+    //Prototypal Inheritance
 
-    /* normal function to create object using empty object */
-    function createNewPerson(name) {
-      const obj = {};
-      obj.name = name;
-      obj.greeting = function() {
-        alert("Hello I'am " + obj.name + ".");
-      };
-
-      return obj;
+    //Super Class
+    function Mobile() {
+      this.a = 10;
     }
 
-    /* creating new person by calling the function */
-    const salva = createNewPerson("Salva");
-    console.log(salva.name);
-    console.log(salva.greeting());
+    //Object of Super Class
+    let m = new Mobile();
+    console.log(m);
 
-    /* Using constructor function to create new objects */
-    /* Notice 
-    1. Person function doesn't return anything unlike the above createNewPerson object. 
-    2. The name of a constructor function starts with a capital letter
-    */
-
-    function Person(first, last, age, gender, interests) {
-      this.name = {
-        first: first,
-        last: last
-      };
-      this.age = age;
-      this.gender = gender;
-      this.interests = interests;
-      this.bio = function() {
-        alert(
-          "Hi I 'm " +
-            this.name.first +
-            " " +
-            this.name.last +
-            ". I am " +
-            this.age +
-            " years old."
-        );
-      };
-
-      this.greeting = function() {
-        alert("Hi! I'm " + this.name.first + ".");
-      };
+    //Child Class
+    function Samsung() {
+      Mobile.call(this); //this is still not a prototypal inheritance
+      this.b = 20;
     }
 
-    let person1 = new Person("Sumit", "Yadav", 24, "male", [
-      "badminton",
-      "tennis"
-    ]);
+    //Object of Child Class
+    let s = new Samsung();
+    console.log(s);
   </script>
 </html>
