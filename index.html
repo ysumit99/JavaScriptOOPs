@@ -63,15 +63,35 @@
     1. Person function doesn't return anything unlike the above createNewPerson object. 
     2. The name of a constructor function starts with a capital letter
     */
-    function Person(name) {
-      this.name = name;
+
+    function Person(first, last, age, gender, interests) {
+      this.name = {
+        first: first,
+        last: last
+      };
+      this.age = age;
+      this.gender = gender;
+      this.interests = interests;
+      this.bio = function() {
+        alert(
+          "Hi I 'm " +
+            this.name.first +
+            " " +
+            this.name.last +
+            ". I am " +
+            this.age +
+            " years old."
+        );
+      };
+
       this.greeting = function() {
-        alert("Hi! I'm " + this.name + ".");
+        alert("Hi! I'm " + this.name.first + ".");
       };
     }
 
-    /* creating objects using constructor function */
-    let person1 = new Person("Mayank");
-    let person2 = new Person("Sumit");
+    let person1 = new Person("Sumit", "Yadav", 24, "male", [
+      "badminton",
+      "tennis"
+    ]);
   </script>
 </html>
