@@ -18,36 +18,71 @@
   </body>
 
   <script>
-    //Prototypal Inheritance
+    //Inheritance using ES6 classes
 
-    //Super Class
-    function Mobile() {
-      this.a = 10;
+    //Parent Class => Constructor function
+    class Person {
+      //properties defined in the constructor
+      constructor(name, age, gender, interests, address) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.interests = interests;
+        this.address = address;
+      }
+
+      //methods defined separately
+      greeting() {
+        console.log(`Hi! I'm ${this.name}`);
+      }
+
+      farewell() {
+        console.log(`Bye Everyone!`);
+      }
     }
 
-    //Object of Super Class
-    let m = new Mobile();
-    console.log(m);
+    //object 1
+    let sumit = new Person(
+      "Sumit",
+      24,
+      "male",
+      ["Badminton", "Programming"],
+      "Koparkhairane"
+    );
+    console.log(sumit.greeting());
+
+    //object 2
+    let Arvind = new Person(
+      "Arvind",
+      23,
+      "Male",
+      ["Python, Running"],
+      "Dombivli"
+    );
+    console.log(Arvind.farewell());
 
     //Child Class
-    function Samsung() {
-      Mobile.call(this); //this is still not a prototypal inheritance
-      this.b = 20;
+    class Teacher extends Person {
+      constructor(name, age, gender, interests, subject, grade) {
+        //inheriting properties from Parent Class
+        super(name, age, gender, interests);
+
+        //properties specific to Teacher
+        this.subject = subject;
+        this.grade = grade;
+      }
     }
 
-    //Object of Child Class
-    let s = new Samsung();
-    console.log(s);
+    //child class objects
+    let Jaya = new Teacher(
+      "Jaya M'am",
+      65,
+      "Female",
+      ["Cooking", "Painting"],
+      "History",
+      "A"
+    );
 
-    //Defining property on prototype of super class
-    Mobile.prototype.z = 30;
-
-    //Prototypal Inheritance
-    Samsung.prototype = Object.create(Mobile.prototype);
-    Samsung.prototype.constructor = Samsung;
-
-    //Prototypal Inheritance in action
-    let samsung = new Samsung();
-    document.write(samsung.a + " | " + samsung.b + " | " + samsung.z);
+    console.log("name => " + Jaya.name + " | Age => " + Jaya.age);
   </script>
 </html>
