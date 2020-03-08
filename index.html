@@ -71,6 +71,14 @@
         this.subject = subject;
         this.grade = grade;
       }
+
+      get subject() {
+        return this._subject;
+      }
+
+      set subject(newSubject) {
+        this._subject = newSubject;
+      }
     }
 
     //child class objects
@@ -104,5 +112,11 @@
     );
     console.log(mayank.greeting()); //greeting is defined on Parent and being used by the child constructor's object
     console.log(mayank.farewell());
+
+    //using getters and setters
+
+    console.log("before " + mayank.subject); //check default value
+    mayank.subject = "Python";
+    console.log("after " + mayank.subject); //after setting the value
   </script>
 </html>
