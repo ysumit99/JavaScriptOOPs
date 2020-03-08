@@ -84,5 +84,17 @@
     );
 
     console.log("name => " + Jaya.name + " | Age => " + Jaya.age);
+
+    //Inheritance in Action
+
+    let mayank = new Teacher(
+      "Mayank",
+      24,
+      "Male",
+      ["ClashOfClans", "React"],
+      "JavaScript",
+      "A"
+    );
+    console.log(mayank.greeting()); //greeting is defined on Parent and being used by the child constructor's object
   </script>
 </html>
