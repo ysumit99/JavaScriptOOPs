@@ -104,3 +104,61 @@ alert(counter1.value()); // 2.
 counter1.decrement();
 alert(counter1.value()); // 1.
 alert(counter2.value()); // 0.
+
+//creating closures in loops: A common mistake
+function showHelp(help) {
+    document.getElementById('help').innerHTML = help;
+}
+
+function setupHelp() {
+    var helpText = [
+        { 'id': 'email', 'help': 'Your e-mail address' },
+        { 'id': 'name', 'help': 'Your full name' },
+        { 'id': 'age', 'help': 'Your age (you must be over 16)' }
+    ];
+
+    for (var i = 0; i < helpText.length; i++) {
+        var item = helpText[i];
+
+        /*
+        This doesn't work as expected because item is left pointing to the last entry in helpText
+        array. As item variable is declared using 'var'. All three closures share the same lexical env
+        The solution is to use more closures or use let keyword.
+        */
+
+        document.getElementById(item.id).onfocus = function () {
+            showHelp(item.help);
+        }
+    }
+}
+
+setupHelp();
+
+//using a factory function to create more closure to solve above problem
+function showHelp(help) {
+    document.getElementById('help').innerHTML = help;
+}
+
+function makeHelpCallback(help) {
+    return function () {
+        showHelp(help);
+    };
+}
+
+function setupHelp() {
+    var helpText = [
+        { 'id': 'email', 'help': 'Your e-mail address' },
+        { 'id': 'name', 'help': 'Your full name' },
+        { 'id': 'age', 'help': 'Your age (you must be over 16)' }
+    ];
+
+    for (var i = 0; i < helpText.length; i++) {
+        var item = helpText[i];
+
+        /*makeHelpCallback is the factory function that creates an additional closure so each HelpText gets 
+        the correct message */
+        document.getElementById(item.id).onfocus = makeHelpCallback(item.help);
+    }
+}
+
+setupHelp();
