@@ -162,3 +162,102 @@ function setupHelp() {
 }
 
 setupHelp();
+
+//Alternative 1. create an IIFE inside the for loop without having to create a factory function
+function showHelp(help) {
+    document.getElementById('help').innerHTML = help;
+}
+
+function setupHelp() {
+    var helpText = [
+        { 'id': 'email', 'help': 'Your e-mail address' },
+        { 'id': 'name', 'help': 'Your full name' },
+        { 'id': 'age', 'help': 'Your age (you must be over 16)' }
+    ];
+
+    for (var i = 0; i < helpText.length; i++) {
+        (function () {
+            var item = helpText[i];
+            document.getElementById(item.id).onfocus = function () {
+                showHelp(item.help);
+            }
+        })(); // Immediate event listener attachment with the current value of item (preserved until iteration).
+    }
+}
+
+setupHelp();
+
+//Alternative 2. Use 'let' keyword
+function showHelp(help) {
+    document.getElementById('help').innerHTML = help;
+}
+
+function setupHelp() {
+    var helpText = [
+        { 'id': 'email', 'help': 'Your e-mail address' },
+        { 'id': 'name', 'help': 'Your full name' },
+        { 'id': 'age', 'help': 'Your age (you must be over 16)' }
+    ];
+
+    for (var i = 0; i < helpText.length; i++) {
+        let item = helpText[i];
+        document.getElementById(item.id).onfocus = function () {
+            showHelp(item.help);
+        }
+    }
+}
+
+setupHelp();
+
+//Alternative 3. use foreach loop
+function showHelp(help) {
+    document.getElementById('help').innerHTML = help;
+}
+
+function setupHelp() {
+    var helpText = [
+        { 'id': 'email', 'help': 'Your e-mail address' },
+        { 'id': 'name', 'help': 'Your full name' },
+        { 'id': 'age', 'help': 'Your age (you must be over 16)' }
+    ];
+
+    helpText.forEach(function (text) {
+        document.getElementById(text.id).onfocus = function () {
+            showHelp(text.help);
+        }
+    });
+}
+
+setupHelp();
+
+//performance considerations
+
+function MyObject(name, message) {
+    this.name = name;
+    this.message = message;
+
+    /* this is not the best approach as methods are redefined for each object created.
+    Methods must be defined on prototype property instead
+    */
+    this.getName = function () {
+        return this.name;
+    };
+
+    this.getMessage = function () {
+        return this.message;
+    };
+
+}
+
+//Methods defined on Prototype Property => The correct way
+function MyObject(name, message) {
+    this.name = name.toString();
+    this.message = message.toString();
+}
+MyObject.prototype.getName = function () {
+    return this.name;
+};
+MyObject.prototype.getMessage = function () {
+    return this.message;
+};
+
