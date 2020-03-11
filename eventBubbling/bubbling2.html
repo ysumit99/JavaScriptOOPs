@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Bubbling/Capturing</title>
+    <style>
+      .button {
+        border: solid 1px black;
+      }
+
+      #parent {
+        width: 50%;
+        margin: 10px 0px 10px 25%;
+      }
+
+      #child {
+        width: 50%;
+        margin: 10px 0px 10px 25%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grandParent" class="button">
+      GrandParent
+      <div id="parent" class="button">
+        Parent
+        <div id="child" class="button">
+          Child
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  document.querySelector("#child").addEventListener(
+    "click",
+    function() {
+      console.log("Child Clicked!");
+    },
+    false
+  );
+
+  document.querySelector("#parent").addEventListener(
+    "click",
+    function() {
+      console.log("Parent Clicked!");
+    },
+    false
+  );
+
+  document.querySelector("#grandParent").addEventListener(
+    "click",
+    function() {
+      console.log("Grand Parent Clicked!");
+    },
+    true
+  );
+</script>

@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="example.css" />
   </head>
 
-  <body>
+  <body onclick="alert(`the bubbling doesn't reach here`)">
+    <button onclick="event.stopPropagation()">Click Me</button>
     A click shows both <code>event.target</code> and <code>this</code> to
     compare:
 
