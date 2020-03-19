@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring</title>
+  </head>
+  <body></body>
+  <script>
+    var animal = {
+      species: "dog",
+      weight: 23,
+      sound: "woof"
+    };
+
+    var { species, sound } = animal; //instead of using animal.species, animal.sound, this is a cleaner syntax
+
+    console.log("The " + species + " says " + sound + "!");
+
+    //Practical Application of Destructuring
+
+    makeSound({
+      species: "dog",
+      weight: 23,
+      sound: "woof"
+    });
+
+    function makeSound(options) {
+      //The below code is not that readable as 'options' is repeated to often.
+      console.log("The " + options.species + " says " + options.sound + "!");
+      console.log("The " + species + " says " + sound + "!"); //This is more readable
+    }
+
+    //Solution 1
+    function makeSound(options) {
+      //Declare the properties into variables.
+      var species = options.species;
+      var sound = options.sound;
+
+      console.log("The " + species + " says " + sound + "!"); //This is more readable
+    }
+
+    //Solution 2 => Destructuring
+    function makeSound(options) {
+      var { species, sound } = options;
+      console.log("The " + species + " says " + sound + "!");
+    }
+
+    //Even better
+    function makeSound({ species = "animal", sound }) {
+      console.log("The " + species + " says " + sound + "!");
+    }
+  </script>
+</html>
