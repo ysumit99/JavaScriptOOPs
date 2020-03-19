@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrow Functions</title>
+  </head>
+  <body></body>
+  <script>
+    const dragonEvents = [
+      { type: "attack", value: 12, target: "player-dorkman" },
+      { type: "yawn", value: 23 },
+      { type: "eat", target: "horse" },
+      { type: "attack", value: 33, target: "player-fluffykins" },
+      { type: "attack", value: 37, target: "player-dorkman" }
+    ];
+
+    //Get total damage on dorkman
+
+    //Using Normal functions
+    const totalDamageOnDorkman = dragonEvents
+      .filter(function(event) {
+        return event.type === "attack";
+      })
+      .filter(function(event) {
+        return event.target === "player-dorkman";
+      })
+      .map(function(event) {
+        return event.value;
+      })
+      .reduce(function(prev, value) {
+        return (prev || 0) + value;
+      });
+
+    console.log("totalDamageOnDorkman = " + totalDamageOnDorkman);
+
+    //Using Arrow functions
+    const totalDamageOnDorkman = dragonEvents
+      .filter(event => event.type === "attack")
+      .filter(event => event.target === "player-dorkman")
+      .map(event => event.value)
+      .reduce((prev, value) => (prev || 0) + value);
+  </script>
+</html>
